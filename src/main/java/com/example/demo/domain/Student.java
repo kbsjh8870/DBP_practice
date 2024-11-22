@@ -4,18 +4,18 @@ import java.time.LocalDateTime;
 
 public class Student {
 
-    private String studentId;
+    private Long studentId;
     private String departmentNum;
     private String password;
     private String name;
     private Integer postCount;
     private LocalDateTime joinDate;
 
-    public String getStudentId() {
+    public Long getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(String studentId) {
+    public void setStudentId(Long studentId) {
         this.studentId = studentId;
     }
 

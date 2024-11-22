@@ -16,15 +16,16 @@ public class StudentService {
 
     private void vaildateDuplicateStudent(Student student) {
 
-      /* StudentRepository.findByName(Student.getName())
+       studentRepository.findById(student.getStudentId())
                 .ifPresent(m->{ // ifPresent: 값이 존재한다면
-                    throw new IllegalStateException("이미 존재하는 학생");
-                });*/
+                    throw new IllegalStateException("이미 존재하는 학생입니다.");
+                });
     }
 
-    public String join(Student student){
+    public Long join(Student student){
 
-        /*vaildateDuplicateStudent();*/
+        vaildateDuplicateStudent(student);
+
         return student.getStudentId();
     }
 }
