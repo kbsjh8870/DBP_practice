@@ -5,11 +5,11 @@ import java.time.LocalDateTime;
 public class Student {
 
     private Long studentId;
-    private String departmentNum;
+    private Long departmentNum;
     private String password;
     private String name;
-    private Integer postCount;
-    private LocalDateTime joinDate;
+    private Integer postCount=0;
+    private LocalDateTime joinDate=LocalDateTime.now();
 
     public Long getStudentId() {
         return studentId;
@@ -19,11 +19,11 @@ public class Student {
         this.studentId = studentId;
     }
 
-    public String getDepartmentNum() {
+    public Long getDepartmentNum() {
         return departmentNum;
     }
 
-    public void setDepartmentNum(String departmentNum){
+    public void setDepartmentNum(Long departmentNum){
         this.departmentNum = departmentNum;
     }
 

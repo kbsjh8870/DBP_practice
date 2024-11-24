@@ -5,6 +5,8 @@ import com.example.demo.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 public class StudentService {
     private final StudentRepository studentRepository;
@@ -25,7 +27,12 @@ public class StudentService {
     public Long join(Student student){
 
         vaildateDuplicateStudent(student);
+        studentRepository.save(student);
 
         return student.getStudentId();
+    }
+
+    public Optional<Student> login(Long studentId, String password) {
+        return studentRepository.findByStudentIdAndPassword(studentId, password);
     }
 }

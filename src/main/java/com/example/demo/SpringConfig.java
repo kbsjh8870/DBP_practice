@@ -1,7 +1,9 @@
 package com.example.demo;
 
+import com.example.demo.repository.DepartmentRepository;
 import com.example.demo.repository.JdbcStudentRepository;
 import com.example.demo.repository.StudentRepository;
+import com.example.demo.service.DepartmentService;
 import com.example.demo.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -18,6 +20,14 @@ public class SpringConfig {
         this.dataSource = dataSource;
     }
 
+    @Bean
+    public DepartmentService departmentService(){
+        return new DepartmentService(departmentRepository());
+    }
+    @Bean
+    public DepartmentRepository departmentRepository(){
+        return new DepartmentRepository(dataSource);
+    }
     @Bean
     public StudentService studentService(){
         return new StudentService(studentRepository());

@@ -64,6 +64,20 @@
             <input type="text" id="id" name="id" required>
         </div>
         <div class="form-group">
+            <label for="name">이름</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="departmentNum">학과</label>
+            <select id="departmentNum" name="departmentNum" required>
+                <option value="" disabled selected>학과를 선택하세요</option>
+                <option th:each="department : ${departments}"
+                        th:value="${department.departmentNum}"
+                        th:text="${department.departmentName}">
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="password">비밀번호</label>
             <input type="password" id="password" name="password" required>
         </div>
