@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>물품 목록</title>
+    <style>
+        .search-bar {
+            padding: 20px;
+            margin-bottom: 20px;
+            background-color: #f0f0f0;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+        .post-item {
+            border: 1px solid #ddd;
+            padding: 15px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .price {
+            color: #e44d26;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<div class="search-bar">
+    <form th:action="@{/posts/list}" method="get">
+        <input type="text" name="keyword" placeholder="검색어를 입력하세요"/>
+        <button type="submit">검~~~~~~~~~~색</button>
+        <button type="button">필터</button>
+        <button type="button">즐겨찾기</button>
+    </form>
+</div>
+
+<div class="grid-container">
+    <div class="post-item" th:each="post : ${posts}">
+        <h3 th:text="${post.itemName}">물품명</h3>
+        <p class="price" th:text="${#numbers.formatDecimal(post.price, 0, 'COMMA', 0, 'POINT')} + '원'">가격</p>
+        <p>학과: <span th:text="${post.departmentName}">학과명</span></p>
+        <p>카테고리: <span th:text="${post.category}">카테고리</span></p>
+        <p th:text="${post.tradingStatus}">상태</p>
+    </div>
+</div>
+
+<div th:if="${posts == null || posts.isEmpty()}" style="text-align: center; padding: 20px;">
+    <p>등록된 게시글이 없습니다.</p>
+</div>
+</body>
+</html>

@@ -4,7 +4,6 @@ import com.example.demo.domain.Department;
 import com.example.demo.domain.Student;
 import com.example.demo.service.DepartmentService;
 import com.example.demo.service.StudentService;
-import oracle.jdbc.proxy.annotation.Post;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -42,18 +41,18 @@ public class StudentController {
         if (optionalStudent.isPresent()) {
             // 로그인 성공
             model.addAttribute("student", optionalStudent.get()); // 로그인한 학생 정보 전달
-            return "/Main"; // 성공 시 대시보드 페이지로 이동
+            return "redirect:/posts/list";
         } else {
             // 로그인 실패
             model.addAttribute("error", "Invalid student ID or password");
-            return "login"; // 실패 시 로그인 페이지로 다시 이동
+            return "login";
         }
     }
 
     @GetMapping("/signup")
     public String showSignupForm(Model model) {
-        List<Department> departments = departmentService.getAllDepartments(); // 학과 목록 가져오기
-        model.addAttribute("departments", departments); // 모델에 학과 데이터 추가
+        List<Department> departments = departmentService.getAllDepartments();
+        model.addAttribute("departments", departments);
         return "signup";
     }
 
